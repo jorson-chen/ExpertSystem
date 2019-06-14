@@ -1,4 +1,4 @@
-package applications.Beans;
+package applications.model;
 
 /*
  * SensorInfo.java

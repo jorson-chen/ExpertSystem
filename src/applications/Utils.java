@@ -1,6 +1,6 @@
 package applications;
 
-import applications.Beans.PhoneInfo;
+import applications.model.PhoneInfo;
 import com.google.gson.Gson;
 
 import java.io.FileReader;

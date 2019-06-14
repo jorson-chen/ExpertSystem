@@ -1,5 +1,6 @@
 package applications;
 
+import applications.model.PhoneInfo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,8 +11,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Utils.parseJSON("log.json");
-
+        PhoneInfo phoneInfo = Utils.parseJSON("log.json");
+        int p = 0;
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
