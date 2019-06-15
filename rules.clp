@@ -1,5 +1,5 @@
 ;; First define templates for the model classes so we can use them
-;; in our pricing rules. This doesn't create any model objects --
+;; in our expert system. This doesn't create any model objects --
 ;; it just tells Jess to examine the classes and set up templates
 ;; using their properties
 
@@ -10,28 +10,27 @@
 (deftemplate AppInfo           (declare (from-class AppInfo)))
 (deftemplate SecurityInfo      (declare (from-class SecurityInfo)))
 
-;; Now define the pricing rules themselves. Each rule matches a set
-;; of conditions and then creates an Offer object to represent a
+;; Now define the security rules themselves. Each rule matches a set
+;; of conditions and then creates an result object to represent a
 ;; bonus of some kind given to a customer. The rules assume that
 ;; there will be just one Order, its OrderItems, and its Customer in
 ;; working memory, along with all the CatalogItems.
 
-(defrule 10%-volume-discount
-    "Give a 10% discount to everybody who spends more than $100."
+(defrule android-version-evaluation
+    "Evaluate Security based on Android Version of the app"
     ?o <- (Order {total > 100})
     =>
     (add (new Offer "10% volume discount" (/ ?o.total 10))))
 
-(defrule 25%-multi-item-discount
-    "Give a 25% discount on items the customer buys three or more of."
+(defrule screen-lock-evaluation
+    "Evaluate Security based on whether screen lock is active or not"
     (OrderItem {quantity >= 3} (price ?price))
     =>
     (add (new Offer "25% multi-item discount" (/ ?price 4))))
 
-(defrule free-cd-rw-disks
-    "If somebody buys a CD writer, send them a free sample of CD-RW
-    disks, catalog number 782321; but only if they're a repeat customer.
-    We use a regular expression to match the CD writer's description."
+(defrule unknown-sources-evaluation
+    "Evaluate Security based on whether installation from unknown sources is
+    allowed or not"
     (CatalogItem (partNumber ?partNumber) (description /CD Writer/))
     (CatalogItem (partNumber 782321) (price ?price))
     (OrderItem (partNumber ?partNumber))
@@ -39,3 +38,34 @@
     =>
     (add (new Offer "Free CD-RW disks" ?price)))
 
+(defrule potentially-harmful-apps-evaluation
+    "Evaluate Security based on whether potentially harmful apps are present
+    or not"
+    (OrderItem {quantity >= 3} (price ?price))
+    =>
+    (add (new Offer "25% multi-item discount" (/ ?price 4))))
+
+(defrule developer-menu-evaluation
+    "Evaluate Security based on whether developer menu is enabled or not"
+    (OrderItem {quantity >= 3} (price ?price))
+    =>
+    (add (new Offer "25% multi-item discount" (/ ?price 4))))
+
+(defrule app-with-dangerous-permissions-evaluation
+    "Evaluate Security based on how many apps with dangerous permissions are
+    present"
+    (OrderItem {quantity >= 3} (price ?price))
+    =>
+    (add (new Offer "25% multi-item discount" (/ ?price 4))))
+
+(defrule bootloader-evaluation
+    "Evaluate Security based on whether bootloader is unlocked or not"
+    (OrderItem {quantity >= 3} (price ?price))
+    =>
+    (add (new Offer "25% multi-item discount" (/ ?price 4))))
+
+(defrule basic-integrity-evaluation
+    "Evaluate Security based on basic integrity of android device"
+    (OrderItem {quantity >= 3} (price ?price))
+    =>
+    (add (new Offer "25% multi-item discount" (/ ?price 4))))
