@@ -2,19 +2,23 @@ package applications;
 
 import applications.model.EvaluationResult;
 import applications.model.PhoneInfo;
+import applications.model.ResultDescription;
+import applications.model.Results;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import jess.JessException;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 import static applications.Constants.*;
+import static applications.Utils.*;
 
 public class Controller {
 
@@ -40,46 +44,45 @@ public class Controller {
     }
 
     @FXML
-    protected void showResultView(Iterator iterator) {
+    protected void showResultView(Iterator iterator) throws IOException {
         //  Get current Window
         Stage resultStage = (Stage) startButton.getScene().getWindow();
-        //  Create StackPane
-        StackPane stackPane = new StackPane();
 
-        ListView listView = new ListView();
+        int finalScores = 0;
+        StringBuilder metricsResult = new StringBuilder();
 
-        final int[] finalScores = new int[1];
-        iterator.forEachRemaining(it -> {
-            EvaluationResult evaluationResult = (EvaluationResult) it;
-            finalScores[0] = finalScores[0] + evaluationResult.getScore();
-//            Label label = new Label();
-            listView.getItems().add(evaluationResult.getMetric() + TABS + evaluationResult.getScore());
+        Results results = parseResultDescriptionJSON(RESULT_DESCRIPTION);
+        List<ResultDescription> descriptionList = results.getResultDescription();
 
-//            stackPane.getChildren().add(label);
-        });
+        while (iterator.hasNext()) {
+            EvaluationResult evaluationResult =
+                    (EvaluationResult) iterator.next();
+            finalScores += evaluationResult.getScore();
+            System.out.println(evaluationResult.getMetric());
+            ResultDescription resultDescription = findByMetric(descriptionList,
+                    evaluationResult.getMetric());
+            metricsResult.append(
+                    START_ROW + resultDescription.getId() +
+                            NEW_COL + resultDescription.getName() +
+                            NEW_COL + evaluationResult.getScore() +
+                            NEW_COL + resultDescription.getMaxScore() +
+                            NEW_COL + resultDescription.getInfo() +
+                            END_ROW);
+        }
+        String securityLabel = classifyDeviceSecurity(finalScores);
 
+        //  Write to file
+        String content = generateHTMLFile(metricsResult.toString(), securityLabel);
 
-        String securityLabel = classifyDeviceSecurity(finalScores[0]);
-        //  Display results to console
-        System.out.println(RESULTS);
-        System.out.println(OBTAINED_SCORE + finalScores[0]);
-        System.out.println(MAXIMUM_SCORE);
-        System.out.println(SECURITY_LABEL + securityLabel);
-
+        //  Create Web View
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        webEngine.loadContent(content, HTML_CONTENT);
         //  Display results on Window
-        VBox vBox = new VBox(listView);
-        Scene scene = new Scene(vBox, 800, 500);
+        Scene scene = new Scene(new VBox(webView), SCREEN_WIDTH, SCREEN_HEIGHT);
         resultStage.setScene(scene);
         resultStage.show();
     }
 
-    private String classifyDeviceSecurity(int finalScore) {
-        if (finalScore > 37) return SECURE_LEVEL_5;
-        else if (finalScore > 34 && finalScore <= 37) return SECURE_LEVEL_4;
-        else if (finalScore > 30 && finalScore <= 34) return SECURE_LEVEL_3;
-        else if (finalScore > 23 && finalScore <= 30) return SECURE_LEVEL_2;
-        else if (finalScore > 15 && finalScore <= 23) return SECURE_LEVEL_1;
-        return SECURE_LEVEL_0;
-    }
 
 }

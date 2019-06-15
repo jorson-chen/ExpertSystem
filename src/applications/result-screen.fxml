@@ -1,10 +1,5 @@
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.text.Text?>
 <GridPane xmlns:fx="http://javafx.com/fxml"
-          fx:controller="applications.Controller" alignment="center" hgap="10"
-          vgap="10">
-
-    <Text id="welcome-text" text="Results"
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
-          GridPane.columnSpan="2"/>
+          fx:controller="applications.Controller" alignment="center" hgap="0"
+          vgap="0">
 </GridPane>

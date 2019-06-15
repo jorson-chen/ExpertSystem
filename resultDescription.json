@@ -1,0 +1,53 @@
+{
+  "resultDescription": [
+    {
+      "id": 1,
+      "metric": "version",
+      "name": "OS Release Version",
+      "maxScore": 3,
+      "info": "The possibility of vulnerability is <br> low if the latest version of Android"
+    },
+    {
+      "id": 2,
+      "metric": "screenLock",
+      "name": "Device Lock",
+      "maxScore": 5,
+      "info": "For any activity to be performed,<br> the Android smartphone has be unlocked."
+    },
+    {
+      "id": 3,
+      "metric": "unknownSources",
+      "name": "Installation from unknown sources",
+      "maxScore": 10,
+      "info": "The possibility of vulnerability is <br>installation is allowed only from Google Play"
+    },
+    {
+      "id": 4,
+      "metric": "potentiallyHarmfulApplications",
+      "name": "Presence of Potentially Harmful Apps",
+      "maxScore": 5,
+      "info": "The possibility of vulnerability is <br>low if no suspicious apps are present"
+    },
+    {
+      "id": 5,
+      "metric": "developerMenu",
+      "name": "Developer Menu Enabled",
+      "maxScore": 1,
+      "info": "If developer option is enabled then<br> user’s sensor data can be <br>manipulated and spoofed"
+    },
+    {
+      "id": 6,
+      "metric": "BOOTLOADER",
+      "name": "Unlocked Bootloader",
+      "maxScore": 5,
+      "info": " If the\nbootloader is locked Android OS <br>does not allow to load unverified or untrusted <br>third-party recovery software or Android OS."
+    },
+    {
+      "id": 7,
+      "metric": "basicIntegrityTest",
+      "name": "Basic Integrity Test",
+      "maxScore": 10,
+      "info": "Its a rigorous test which tells the<br> overall vulnerability status of Android Device"
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import static applications.Constants.SCREEN_FXML;
+import static applications.Constants.*;
 
 public class Main extends Application {
 
@@ -16,9 +16,9 @@ public class Main extends Application {
         // Set Window
         Parent root = FXMLLoader.load(getClass().getResource(SCREEN_FXML));
         // Set title of window
-        primaryStage.setTitle("Expert System");
+        primaryStage.setTitle(WINDOW_TITLE);
         // Set Scene
-        primaryStage.setScene(new Scene(root, 800, 500));
+        primaryStage.setScene(new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT));
         primaryStage.show();
     }
 
