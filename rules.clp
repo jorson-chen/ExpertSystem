@@ -3,7 +3,7 @@
 ;; it just tells Jess to examine the classes and set up templates
 ;; using their properties
 
-(import application.model.*)
+(import applications.model.*)
 (deftemplate PhoneInfo         (declare (from-class PhoneInfo)))
 (deftemplate BasicInfo         (declare (from-class BasicInfo)))
 (deftemplate SensorInfo        (declare (from-class SensorInfo)))
@@ -18,7 +18,64 @@
 
 (defrule android-version-evaluation
     "Evaluate Security based on Android Version of the app"
-    ?basicInfo <- (BasicInfo {versionRELEASE > 8})
-    =>
-    (printout t "Latest Version !" crlf))
+    (BasicInfo { versionRELEASE > 8})
+     =>
+    (add (new EvaluationResult "version" 3 )))
 
+(defrule android-version-evaluation
+    "Evaluate Security based on Android Version of the app"
+    (BasicInfo { versionRELEASE > 6 && versionRELEASE < 9})
+     =>
+    (add (new EvaluationResult "version" 2 )))
+
+(defrule android-version-evaluation
+    "Evaluate Security based on Android Version of the app"
+    (BasicInfo { versionRELEASE > 5 && versionRELEASE < 7})
+     =>
+    (add (new EvaluationResult "version" 1 )))
+
+(defrule android-version-evaluation
+    "Evaluate Security based on Android Version of the app"
+    (BasicInfo { versionRELEASE < 6})
+     =>
+    (add (new EvaluationResult "version" 0 )))
+
+(defrule screen-lock-evaluation
+    "Evaluate Security based on whether screen lock is active or not"
+    (BasicInfo {screenLock == true})
+    =>
+    (add (new EvaluationResult "screenLock" 5))
+
+(defrule screen-lock-evaluation
+    "Evaluate Security based on whether screen lock is active or not"
+    (BasicInfo {screenLock == false})
+    =>
+    (add (new EvaluationResult "screenLock" 0))
+
+(defrule unknown-sources-evaluation
+    "Evaluate Security based on whether installation from unknown sources is
+         allowed or not"
+    (SecurityInfo {unknownSources == false})
+    =>
+    (add (new EvaluationResult "unknownSources" 10))
+
+(defrule unknown-sources-evaluation
+    "Evaluate Security based on whether installation from unknown sources is
+         allowed or not"
+    (SecurityInfo {unknownSources == true})
+    =>
+    (add (new EvaluationResult "unknownSources" -10))
+
+(defrule potentially-harmful-apps-evaluation
+    "Evaluate Security based on whether potentially harmful apps are present
+        or not"
+    (SecurityInfo {potentiallyHarmfulApplications == false})
+    =>
+    (add (new EvaluationResult "potentiallyHarmfulApplications" 5))
+
+(defrule potentially-harmful-apps-evaluation
+    "Evaluate Security based on whether potentially harmful apps are present
+        or not"
+    (SecurityInfo {potentiallyHarmfulApplications == true})
+    =>
+    (add (new EvaluationResult "potentiallyHarmfulApplications" 0))

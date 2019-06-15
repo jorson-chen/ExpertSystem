@@ -9,7 +9,7 @@ package applications.model;
  */
 public class BasicInfo {
 
-    private String versionRELEASE;
+    private int versionRELEASE;
     private String versionINCREMENTAL;
     private String versionSDKNUMBER;
     private String BOARD;
@@ -32,11 +32,11 @@ public class BasicInfo {
     private String UNKNOWN;
     private String USER;
 
-    public String getVersionRELEASE() {
+    public int getVersionRELEASE() {
         return versionRELEASE;
     }
 
-    public void setVersionRELEASE(String versionRELEASE) {
+    public void setVersionRELEASE(int versionRELEASE) {
         this.versionRELEASE = versionRELEASE;
     }
 

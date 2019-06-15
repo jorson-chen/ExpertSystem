@@ -14,9 +14,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         PhoneInfo phoneInfo = Utils.parseJSON("log.json");
-        SecurityEngine securityEngine = new SecurityEngine(phoneInfo);
+        SecurityEngine securityEngine =
+                new SecurityEngine(phoneInfo.getBasicInfo(),
+                        phoneInfo.getSecurityInfo(),
+                        phoneInfo.getSensorInfo(), phoneInfo.getAppInfo());
 
-        Iterator evaluationResult = securityEngine.run(phoneInfo);
+        Iterator evaluationResult = securityEngine.run();
+//        System.out.println(securityEngine.run(phoneInfo));
+
+//        securityEngine.run(phoneInfo);
+
+        int p = 0;
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");

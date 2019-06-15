@@ -9,24 +9,11 @@ package applications.model;
  */
 public class EvaluationResult {
 
-    private int version;
-    private int screenlock;
-    private int unknownSources;
-    private int potentiallyHarmfulApps;
-    private int developerMenu;
-    private int appsWithDangerousPermissions;
-    private int unlockedBootloader;
-    private int basicIntegrityTest;
-    private String verdict;
+    String metric;
+    int score;
 
-    public EvaluationResult(int version, int screenlock, int unknownSources, int potentiallyHarmfulApps, int developerMenu, int appsWithDangerousPermissions, int unlockedBootloader, int basicIntegrityTest) {
-        this.version = version;
-        this.screenlock = screenlock;
-        this.unknownSources = unknownSources;
-        this.potentiallyHarmfulApps = potentiallyHarmfulApps;
-        this.developerMenu = developerMenu;
-        this.appsWithDangerousPermissions = appsWithDangerousPermissions;
-        this.unlockedBootloader = unlockedBootloader;
-        this.basicIntegrityTest = basicIntegrityTest;
+    public EvaluationResult(String metric, int score) {
+        this.metric = metric;
+        this.score = score;
     }
 }

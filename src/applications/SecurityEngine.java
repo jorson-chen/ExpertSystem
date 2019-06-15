@@ -1,7 +1,6 @@
 package applications;
 
-import applications.model.EvaluationResult;
-import applications.model.PhoneInfo;
+import applications.model.*;
 import jess.Filter;
 import jess.JessException;
 import jess.Rete;
@@ -19,9 +18,13 @@ import java.util.Iterator;
 public class SecurityEngine {
     private Rete engine;
     private WorkingMemoryMarker marker;
-    private PhoneInfo phoneInfo;
+    private BasicInfo basicInfo;
+    private SecurityInfo securityInfo;
+    private SensorInfo[] sensorInfos;
+    private AppInfo[] appInfos;
 
-    public SecurityEngine(PhoneInfo phoneInfo) throws JessException {
+    public SecurityEngine(BasicInfo basicInfo, SecurityInfo securityInfo,
+                          SensorInfo[] sensorInfos, AppInfo[] appInfos) throws JessException {
         // Create a Jess rule engine
         engine = new Rete();
         engine.reset();
@@ -29,19 +32,25 @@ public class SecurityEngine {
         // Load the evaluation rules
         engine.batch("rules.clp");
 
-        this.phoneInfo = phoneInfo;
+        this.basicInfo = basicInfo;
 
-        engine.add(phoneInfo);
+        engine.add(basicInfo);
+        engine.add(securityInfo);
+        engine.add(sensorInfos);
+        engine.add(appInfos);
 
         marker = engine.mark();
     }
 
-    public Iterator run(PhoneInfo phoneInfo) throws JessException {
+    public Iterator run() throws JessException {
         // Remove any previous order data, leaving only catalog data
         engine.resetToMark(marker);
 
+
         // Fire the rules that apply to this order
         engine.run();
+
+//        engine.getOutStream();
 
         // Return the result of Evaluation created by the rules
         return engine.getObjects(new Filter.ByClass(EvaluationResult.class));
