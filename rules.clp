@@ -100,13 +100,13 @@
     (add (new EvaluationResult "BOOTLOADER" 5)))
 
 (defrule basic-integrity-evaluation-T
-    "EEvaluate Security based on whether basic integrity is valid or not"
+    "Evaluate Security based on whether basic integrity is valid or not"
     (SecurityInfo {basicIntegrityTest == TRUE})
     =>
     (add (new EvaluationResult "basicIntegrityTest" 10)))
 
 (defrule basic-integrity-evaluation-F
-    "EEvaluate Security based on whether basic integrity is valid or not"
+    "Evaluate Security based on whether basic integrity is valid or not"
     (SecurityInfo {basicIntegrityTest == FALSE})
     =>
     (add (new EvaluationResult "basicIntegrityTest" 0)))
