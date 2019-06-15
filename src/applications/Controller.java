@@ -48,12 +48,12 @@ public class Controller {
         //  Get current Window
         Stage resultStage = (Stage) startButton.getScene().getWindow();
 
-        int finalScores = 0;
+        int finalScores = 1;
         StringBuilder metricsResult = new StringBuilder();
 
         Results results = parseResultDescriptionJSON(RESULT_DESCRIPTION);
         List<ResultDescription> descriptionList = results.getResultDescription();
-
+        int id = 0;
         while (iterator.hasNext()) {
             EvaluationResult evaluationResult =
                     (EvaluationResult) iterator.next();
@@ -62,7 +62,7 @@ public class Controller {
             ResultDescription resultDescription = findByMetric(descriptionList,
                     evaluationResult.getMetric());
             metricsResult.append(
-                    START_ROW + resultDescription.getId() +
+                    START_ROW + id++ +
                             NEW_COL + resultDescription.getName() +
                             NEW_COL + evaluationResult.getScore() +
                             NEW_COL + resultDescription.getMaxScore() +

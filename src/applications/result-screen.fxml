@@ -1,5 +1,0 @@
-<?import javafx.scene.layout.GridPane?>
-<GridPane xmlns:fx="http://javafx.com/fxml"
-          fx:controller="applications.Controller" alignment="center" hgap="0"
-          vgap="0">
-</GridPane>
