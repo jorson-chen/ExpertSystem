@@ -7,12 +7,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Iterator;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         PhoneInfo phoneInfo = Utils.parseJSON("log.json");
-        int p = 0;
+        SecurityEngine securityEngine = new SecurityEngine(phoneInfo);
+
+        Iterator evaluationResult = securityEngine.run(phoneInfo);
+
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
@@ -23,4 +28,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
