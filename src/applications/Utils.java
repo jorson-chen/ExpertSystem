@@ -14,13 +14,13 @@ import java.util.stream.Stream;
 
 import static applications.Constants.*;
 
-
 /*
  * Utils.java
  *
  * Version: 1.0
  *
  * Revisions:
+ *      Added Documentation
  */
 public class Utils {
 
@@ -66,7 +66,6 @@ public class Utils {
             if (x.getMetric().equals(metric))
                 resultDescription[0] = x;
         });
-        System.out.println(resultDescription[0].getName());
         return resultDescription[0];
     }
 

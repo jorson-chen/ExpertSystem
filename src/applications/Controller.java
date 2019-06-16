@@ -58,7 +58,6 @@ public class Controller {
             EvaluationResult evaluationResult =
                     (EvaluationResult) iterator.next();
             finalScores += evaluationResult.getScore();
-            System.out.println(evaluationResult.getMetric());
             ResultDescription resultDescription = findByMetric(descriptionList,
                     evaluationResult.getMetric());
             metricsResult.append(
@@ -83,6 +82,5 @@ public class Controller {
         resultStage.setScene(scene);
         resultStage.show();
     }
-
 
 }

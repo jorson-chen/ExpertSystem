@@ -38,7 +38,6 @@ public class SecurityEngine {
         engine.add(securityInfo);
         engine.add(sensorInfos);
         engine.add(appInfos);
-
         marker = engine.mark();
     }
 
@@ -46,11 +45,8 @@ public class SecurityEngine {
         // Remove any previous order data, leaving only catalog data
         engine.resetToMark(marker);
 
-
         // Fire the rules that apply to this order
         engine.run();
-
-//        engine.getOutStream();
 
         // Return the result of Evaluation created by the rules
         return engine.getObjects(new Filter.ByClass(EvaluationResult.class));

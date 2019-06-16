@@ -8,6 +8,7 @@ import applications.model.PhoneInfo;
  * Version: 1.0
  *
  * Revisions:
+ *      Added comments
  */
 public interface Database {
     PhoneInfo getPhoneInfo();
