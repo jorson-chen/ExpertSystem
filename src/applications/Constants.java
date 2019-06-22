@@ -13,12 +13,12 @@ public class Constants {
     public static final String ANDROID_SECURITY_LOG = "log.json";
     public static final String RESULT_DESCRIPTION = "resultDescription.json";
     public static final String SCREEN_FXML = "screen.fxml";
-    public static final String SECURE_LEVEL_5 = "<span style='color:#388e3c'>Extremely Secure</span>";
-    public static final String SECURE_LEVEL_4 = "<span style='color:#aed581'>Very Secure</span>";
-    public static final String SECURE_LEVEL_3 = "<span style='color:#ffb74d'>Moderately Secure</span>";
-    public static final String SECURE_LEVEL_2 = "<span style='color:#d84315'>Not So Secure</span>";
-    public static final String SECURE_LEVEL_1 = "<span style='color:#bf360c'>Very InSecure</span>";
-    public static final String SECURE_LEVEL_0 = "<span style='color:#bf360c'>Extremely InSecure</span>";
+    public static final int SECURE_LEVEL_5 = 5;
+    public static final int SECURE_LEVEL_4 = 4;
+    public static final int SECURE_LEVEL_3 = 3;
+    public static final int SECURE_LEVEL_2 = 2;
+    public static final int SECURE_LEVEL_1 = 1;
+    public static final int SECURE_LEVEL_0 = 0;
     public static final String START_ROW = "<tr><td>";
     public static final String END_ROW = "</td></tr>";
     public static final String NEW_COL = "</td><td>";

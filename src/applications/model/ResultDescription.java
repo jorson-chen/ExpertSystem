@@ -12,6 +12,7 @@ public class ResultDescription {
     private int id;
     private String metric;
     private String name;
+    private int[] possibleInputs;
     private int maxScore;
     private String info;
 
@@ -41,6 +42,14 @@ public class ResultDescription {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int[] getPossibleInputs() {
+        return possibleInputs;
+    }
+
+    public void setPossibleInputs(int[] possibleInputs) {
+        this.possibleInputs = possibleInputs;
     }
 
     public int getMaxScore() {

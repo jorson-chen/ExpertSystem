@@ -68,15 +68,15 @@ public class Controller {
                             NEW_COL + resultDescription.getInfo() +
                             END_ROW);
         }
-        String securityLabel = classifyDeviceSecurity(finalScores);
+        int securityLabel = classifyDeviceSecurity(finalScores);
 
         //  Write to file
-        String content = generateHTMLFile(metricsResult.toString(), securityLabel);
+//        String content = generateHTMLFile(metricsResult.toString(), securityLabel);
 
         //  Create Web View
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
-        webEngine.loadContent(content, HTML_CONTENT);
+//        webEngine.loadContent(content, HTML_CONTENT);
         //  Display results on Window
         Scene scene = new Scene(new VBox(webView), SCREEN_WIDTH, SCREEN_HEIGHT);
         resultStage.setScene(scene);

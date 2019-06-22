@@ -35,78 +35,110 @@
      =>
     (add (new EvaluationResult "version" 1 )))
 
+(defrule android-version-evaluation-0
+    "Evaluate Security based on Android Version of the app"
+    (BasicInfo { versionRELEASE < 6})
+     =>
+    (add (new EvaluationResult "version" 0 )))
+
 (defrule screen-lock-evaluation-T
     "Evaluate Security based on whether screen lock is active or not"
-    (SecurityInfo {screenLock == TRUE})
+    (SecurityInfo {screenLock == 1})
     =>
     (add (new EvaluationResult "screenLock" 5)))
 
 (defrule screen-lock-evaluation-F
     "Evaluate Security based on whether screen lock is active or not"
-    (SecurityInfo {screenLock == FALSE})
+    (SecurityInfo {screenLock == 0})
     =>
     (add (new EvaluationResult "screenLock" 0)))
 
 (defrule unknown-sources-evaluation-F
     "Evaluate Security based on whether installation from unknown sources is
          allowed or not"
-    (SecurityInfo {unknownSources == FALSE})
+    (SecurityInfo {unknownSources == 0})
     =>
     (add (new EvaluationResult "unknownSources" 10)))
 
 (defrule unknown-sources-evaluation-T
     "Evaluate Security based on whether installation from unknown sources is
          allowed or not"
-    (SecurityInfo {unknownSources == TRUE})
+    (SecurityInfo {unknownSources == 1})
     =>
     (add (new EvaluationResult "unknownSources" -10)))
 
 (defrule potentially-harmful-apps-evaluation-F
     "Evaluate Security based on whether potentially harmful apps are present
         or not"
-    (SecurityInfo {potentiallyHarmfulApplications == FALSE})
+    (SecurityInfo {potentiallyHarmfulApplications == 0})
     =>
     (add (new EvaluationResult "potentiallyHarmfulApplications" 5)))
 
 (defrule potentially-harmful-apps-evaluation-T
     "Evaluate Security based on whether potentially harmful apps are present
         or not"
-    (SecurityInfo {potentiallyHarmfulApplications == TRUE})
+    (SecurityInfo {potentiallyHarmfulApplications == 1})
     =>
     (add (new EvaluationResult "potentiallyHarmfulApplications" 0)))
 
 (defrule developer-menu-evaluation-F
     "Evaluate Security based on whether developer menu is enabled or not"
-    (SecurityInfo {developerMenu == FALSE})
+    (SecurityInfo {developerMenu == 0})
     =>
     (add (new EvaluationResult "developerMenu" 1)))
 
 (defrule developer-menu-evaluation-T
     "Evaluate Security based on whether developer menu is enabled or not"
-    (SecurityInfo {developerMenu == TRUE})
+    (SecurityInfo {developerMenu == 1})
     =>
     (add (new EvaluationResult "developerMenu" 0)))
 
 (defrule bootloader-evaluation-U
     "Evaluate Security based on whether bootloader is unlocked or not"
-    (BasicInfo {BOOTLOADER == "UNKNOWN"})
+    (BasicInfo {BOOTLOADER == 0})
     =>
     (add (new EvaluationResult "BOOTLOADER" -2)))
 
 (defrule bootloader-evaluation
     "Evaluate Security based on whether bootloader is unlocked or not"
-    (BasicInfo {BOOTLOADER != "UNKNOWN"})
+    (BasicInfo {BOOTLOADER == 1})
     =>
     (add (new EvaluationResult "BOOTLOADER" 5)))
 
 (defrule basic-integrity-evaluation-T
     "Evaluate Security based on whether basic integrity is valid or not"
-    (SecurityInfo {basicIntegrityTest == TRUE})
+    (SecurityInfo {basicIntegrityTest == 1})
     =>
     (add (new EvaluationResult "basicIntegrityTest" 10)))
 
 (defrule basic-integrity-evaluation-F
     "Evaluate Security based on whether basic integrity is valid or not"
-    (SecurityInfo {basicIntegrityTest == FALSE})
+    (SecurityInfo {basicIntegrityTest == 0})
     =>
     (add (new EvaluationResult "basicIntegrityTest" 0)))
+
+(defrule apps-with-unsafe-permissions-1
+    "Evaluate Security based on whether basic integrity is valid or not"
+    (SecurityInfo {noOfAppsWithUnsafePermission > 5})
+    =>
+    (add (new EvaluationResult "noOfAppsWithUnsafePermission" -5)))
+
+(defrule apps-with-unsafe-permissions-2
+    "Evaluate Security based on whether basic integrity is valid or not"
+    (SecurityInfo {noOfAppsWithUnsafePermission >= 3 &&
+    noOfAppsWithUnsafePermission < 5})
+    =>
+    (add (new EvaluationResult "noOfAppsWithUnsafePermission" 1)))
+
+(defrule apps-with-unsafe-permissions-3
+    "Evaluate Security based on whether basic integrity is valid or not"
+    (SecurityInfo {noOfAppsWithUnsafePermission >= 1 &&
+    noOfAppsWithUnsafePermission < 3})
+    =>
+    (add (new EvaluationResult "noOfAppsWithUnsafePermission" 3)))
+
+(defrule apps-with-unsafe-permissions-4
+    "Evaluate Security based on whether basic integrity is valid or not"
+    (SecurityInfo {noOfAppsWithUnsafePermission < 1 })
+    =>
+    (add (new EvaluationResult "noOfAppsWithUnsafePermission" 5)))
