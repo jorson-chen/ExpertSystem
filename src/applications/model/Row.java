@@ -1,22 +1,31 @@
 package applications.model;
 
 /*
- * SecurityInfo.java
+ * Row.java
  *
  * Version: 1.0
  *
  * Revisions:
  */
-public class SecurityInfo {
+public class Row {
 
-    private int screenLock;
-    private int unknownSources;
-    private int potentiallyHarmfulApplications;
-    private int developerMenu;
-    private int basicIntegrityTest;
-    private int androidCompatibilityTest;
-    private int androidOSVersion;
-    private int noOfAppsWithUnsafePermission;
+    private int versionRELEASE; //
+    private int screenLock; //
+    private int unknownSources; //
+    private int potentiallyHarmfulApplications; //
+    private int developerMenu; //
+    private int BOOTLOADER; //
+    private int basicIntegrityTest; //
+    private int noOfAppsWithUnsafePermission; //
+    private int securityScore;
+
+    public int getVersionRELEASE() {
+        return versionRELEASE;
+    }
+
+    public void setVersionRELEASE(int versionRELEASE) {
+        this.versionRELEASE = versionRELEASE;
+    }
 
     public int getScreenLock() {
         return screenLock;
@@ -50,6 +59,14 @@ public class SecurityInfo {
         this.developerMenu = developerMenu;
     }
 
+    public int getBOOTLOADER() {
+        return BOOTLOADER;
+    }
+
+    public void setBOOTLOADER(int BOOTLOADER) {
+        this.BOOTLOADER = BOOTLOADER;
+    }
+
     public int getBasicIntegrityTest() {
         return basicIntegrityTest;
     }
@@ -58,27 +75,19 @@ public class SecurityInfo {
         this.basicIntegrityTest = basicIntegrityTest;
     }
 
-    public int getAndroidCompatibilityTest() {
-        return androidCompatibilityTest;
-    }
-
-    public void setAndroidCompatibilityTest(int androidCompatibilityTest) {
-        this.androidCompatibilityTest = androidCompatibilityTest;
-    }
-
-    public int getAndroidOSVersion() {
-        return androidOSVersion;
-    }
-
-    public void setAndroidOSVersion(int androidOSVersion) {
-        this.androidOSVersion = androidOSVersion;
-    }
-
     public int getNoOfAppsWithUnsafePermission() {
         return noOfAppsWithUnsafePermission;
     }
 
     public void setNoOfAppsWithUnsafePermission(int noOfAppsWithUnsafePermission) {
         this.noOfAppsWithUnsafePermission = noOfAppsWithUnsafePermission;
+    }
+
+    public int getSecurityScore() {
+        return securityScore;
+    }
+
+    public void setSecurityScore(int securityScore) {
+        this.securityScore = securityScore;
     }
 }

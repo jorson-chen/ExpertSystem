@@ -4,6 +4,17 @@
       "id": 1,
       "metric": "version",
       "name": "OS Release Version",
+      "possibleInputs": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
       "maxScore": 3,
       "info": "The possibility of vulnerability is <br> low if the latest version of Android"
     },
@@ -11,6 +22,10 @@
       "id": 2,
       "metric": "screenLock",
       "name": "Device Lock",
+      "possibleInputs": [
+        0,
+        1
+      ],
       "maxScore": 5,
       "info": "For any activity to be performed,<br> the Android smartphone has be unlocked."
     },
@@ -18,6 +33,10 @@
       "id": 3,
       "metric": "unknownSources",
       "name": "Installation from unknown sources",
+      "possibleInputs": [
+        0,
+        1
+      ],
       "maxScore": 10,
       "info": "The possibility of vulnerability is <br>installation is allowed only from Google Play"
     },
@@ -25,6 +44,10 @@
       "id": 4,
       "metric": "potentiallyHarmfulApplications",
       "name": "Presence of Potentially Harmful Apps",
+      "possibleInputs": [
+        0,
+        1
+      ],
       "maxScore": 5,
       "info": "The possibility of vulnerability is <br>low if no suspicious apps are present"
     },
@@ -32,6 +55,10 @@
       "id": 5,
       "metric": "developerMenu",
       "name": "Developer Menu Enabled",
+      "possibleInputs": [
+        0,
+        1
+      ],
       "maxScore": 1,
       "info": "If developer option is enabled then<br> user’s sensor data can be <br>manipulated and spoofed"
     },
@@ -39,6 +66,10 @@
       "id": 6,
       "metric": "BOOTLOADER",
       "name": "Unlocked Bootloader",
+      "possibleInputs": [
+        0,
+        1
+      ],
       "maxScore": 5,
       "info": " If the\nbootloader is locked Android OS <br>does not allow to load unverified or untrusted <br>third-party recovery software or Android OS."
     },
@@ -46,8 +77,31 @@
       "id": 7,
       "metric": "basicIntegrityTest",
       "name": "Basic Integrity Test",
+      "possibleInputs": [
+        0,
+        1
+      ],
       "maxScore": 10,
       "info": "Its a rigorous test which tells the<br> overall vulnerability status of Android Device"
+    },
+    {
+      "id": 8,
+      "metric": "noOfAppsWithUnsafePermission",
+      "name": "Apps with Dangerous Permissions",
+      "possibleInputs": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "maxScore": 5,
+      "info": "Apps with Dangerous Permissions"
     }
   ]
 }

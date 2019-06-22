@@ -13,7 +13,7 @@ public class BasicInfo {
     private String versionINCREMENTAL;
     private String versionSDKNUMBER;
     private String BOARD;
-    private String BOOTLOADER;
+    private int BOOTLOADER;
     private String BRAND;
     private String CPU_ABI;
     private String CPU_ABI2;
@@ -64,11 +64,11 @@ public class BasicInfo {
         this.BOARD = BOARD;
     }
 
-    public String getBOOTLOADER() {
+    public int getBOOTLOADER() {
         return BOOTLOADER;
     }
 
-    public void setBOOTLOADER(String BOOTLOADER) {
+    public void setBOOTLOADER(int BOOTLOADER) {
         this.BOOTLOADER = BOOTLOADER;
     }
 
